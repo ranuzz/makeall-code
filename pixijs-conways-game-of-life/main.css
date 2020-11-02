@@ -1,0 +1,8 @@
+body { margin: 0; }
+canvas { display: block; }
+
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+  }
