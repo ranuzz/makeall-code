@@ -1,0 +1,22 @@
+CXX=gcc
+CFLAGS=  -O3 -I ../include -g
+OBJECTS= ./objects/devmem2.o
+#LIBS = -L/usr/local/lib/sprng/lib -llcg -L/usr/local/lib/pgplot -lcpgplot -lpgplot -lX11 -lftn -lm
+
+# --- targets
+all: create_dirs devmem2
+devmem2:	$(OBJECTS) 
+	$(CXX) -o ./bin/devmem2 $(OBJECTS)
+
+./objects/devmem2.o: ../devmem2.c
+	$(CXX) $(CFLAGS) -c ../devmem2.c -o ./objects/devmem2.o
+
+# --- remove binary and executable files
+create_dirs:
+	mkdir -p ./objects
+	mkdir -p ./bin
+
+clean:
+	rm -rf bin
+	rm -rf objects
+	rm -f $(OBJECTS)
