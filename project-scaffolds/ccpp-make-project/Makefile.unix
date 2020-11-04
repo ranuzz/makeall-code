@@ -1,0 +1,22 @@
+CXX=g++
+CFLAGS=  -O3 -I ../include -g
+OBJECTS= ./objects/snippy.o
+#LIBS = -L/usr/local/lib/sprng/lib -llcg -L/usr/local/lib/pgplot -lcpgplot -lpgplot -lX11 -lftn -lm
+
+# --- targets
+all: create_dirs snippy
+snippy:	$(OBJECTS) 
+	$(CXX) -o ./bin/snippy $(OBJECTS)
+
+./objects/snippy.o: ../src/snippy.cpp
+	$(CXX) $(CFLAGS) -c ../src/snippy.cpp -o ./objects/snippy.o
+
+# --- remove binary and executable files
+create_dirs:
+	mkdir -p ./objects
+	mkdir -p ./bin
+
+clean:
+	rm -rf bin
+	rm -rf objects
+	rm -f $(OBJECTS)

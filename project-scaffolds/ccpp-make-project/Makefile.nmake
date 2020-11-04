@@ -1,0 +1,41 @@
+# Makefile for windows (nmake)
+# x64 target on x64 host using VS 2019 CL tool
+# CMD shortcut
+# %comspec% /k "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" amd64
+
+#define macros
+EXECUTABLE_NAME = snippy.exe
+DIR_SRC = ..\src
+DIR_INCLUDE = ..\include
+DIR_BIN = .\bin
+DIR_BIN_X64 = $(DIR_BIN)\x64
+# DIR_BIN_X86 = $(DIR_BIN)\x86
+DIR_INTERMEDIATE = .\objects
+DIR_INTERMEDIATE_X64 = $(DIR_INTERMEDIATE)\x64
+# DIR_INTERMEDIATE_X86 = $(DIR_INTERMEDIATE)\x86
+
+SRC_FILES= \
+  $(DIR_SRC)\snippy.cpp
+
+# description block
+#  cl /EHsc /Fe$(DIR_BIN_X64)\$(EXECUTABLE_NAME) /I$(DIR_INCLUDE) $(SRC_FILES)
+$(EXECUTABLE_NAME) : $(SRC_FILES)
+  cl /EHsc /Fe$(DIR_BIN_X64)\$(EXECUTABLE_NAME) /I$(DIR_INCLUDE) $(SRC_FILES)
+  copy *.obj $(DIR_INTERMEDIATE_X64)
+  del *.obj
+
+# build application
+snippy: $(EXECUTABLE_NAME)
+
+# create output directories
+create_dirs:
+ @if not exist $(DIR_BIN_X64) mkdir $(DIR_BIN_X64)
+ @if not exist $(DIR_INTERMEDIATE_X64) mkdir $(DIR_INTERMEDIATE_X64)
+
+# delete output directories
+clean:
+ @if exist $(DIR_BIN) rmdir /S /Q $(DIR_BIN)
+ @if exist $(DIR_INTERMEDIATE) rmdir /S /Q $(DIR_INTERMEDIATE)
+
+# create directories and build application
+all: clean create_dirs snippy
