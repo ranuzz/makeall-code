@@ -1,0 +1,5 @@
+include cluedo/cluedo.cfg
+graft cluedo/www
+graft cluedo/www/static
+graft cluedo/www/templates
+global-exclude __pycache__  *.pyc
