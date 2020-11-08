@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Turing Machine</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.9.0/brython.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.9.0/brython_stdlib.js"></script>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='tachyons.min.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    
+</head>
+<body onload="brython()">
+
+    <div>
+        <label for="codetxt" class="f6 b db mb2">Code <span class="normal black-60">(sample included)</span></label>
+        <textarea id="codetxt" name="codetxt"
+            rows="10"
+            class="db border-box hover-black w-100 measure ba b--black-20 pa2 br2 mb2"
+            aria-describedby="codetxt-desc">
+# start_state, read_val, write_inst, move_inst, next_state
+# grammar
+# state: start | end | str
+# value: 1 | 0 | null
+# move: l | r | s
+start 0 1 r one
+one 0 null l start
+start 1 null s stop
+        </textarea>
+        <small id="codetxt-desc" class="f6 black-60">Press run to compile and execute</small>
+    </div>    
+    
+    <br />
+    
+    <button id="runtm" class="f6 link dim ba bw2 ph3 pv2 mb2 dib black">Compile & Execute</button>
+    
+    <br />
+    
+    <div>
+        <label for="codeout" class="f6 b db mb2">Execution steps and output <span class="normal black-60">(might fail)</span></label>
+        <textarea id="codeout" name="codeout"
+            rows="10"
+            class="db border-box hover-black w-100 measure ba b--black-20 pa2 br2 mb2"
+            aria-describedby="codeout-desc">
+        </textarea>
+        <small id="codeout-desc" class="f6 black-60"></small>
+    </div>        
+    
+    <script type="text/python" src='main.js'></script>
+</body>
+</html>

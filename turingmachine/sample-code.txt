@@ -1,0 +1,8 @@
+# start_state, read_value, write_instruction, move_instruction, next_state
+# Keyword
+# state: start | end | str
+# value: 1 | 0 | null
+# move: l | r | s
+start 0 1 r one
+one 0 null l start
+start 1 null s stop
