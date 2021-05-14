@@ -24,10 +24,6 @@ class AppConfig:
     simple_log_format = None
     cur_log_file = None
 
-    # training
-    train_dir_abs = None
-    train_dir = None
-
     sql_alchemy_conn = None
 
     # webserver
@@ -68,10 +64,6 @@ class AppConfig:
             default_flask_config = _read_default_config_file('flask_configuration.py')
             with open(self.flask_config_path, 'w') as fp:
                 fp.write(default_flask_config)
-
-    def setup_training(self):
-        self.train_dir_abs = os.path.join(self.cluedo_home, self.train_dir)
-        os.makedirs(self.train_dir_abs, exist_ok=True)
 
 
 def _read_default_config_file(file_name):
@@ -135,9 +127,5 @@ def get_config():
     # flask webserver
     web_config = config['webserver']
     app_config.base_url = web_config['base_url']
-
-    # training
-    train_config = config['training']
-    app_config.train_dir = train_config['train_dir']
 
     return app_config

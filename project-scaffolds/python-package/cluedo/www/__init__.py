@@ -6,7 +6,7 @@ from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_admin.base import MenuLink
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate, MigrateCommand
+from flask_migrate import Migrate
 
 from cluedo import AppConfig
 
@@ -52,8 +52,7 @@ def create_app(test_config=None):
 
         # Models managed by this app Cluedo package flask app
         admin.add_sub_category(name="Cluedo", parent_name="Cluedo")
-        admin.add_view(ModelView(models.Article, db.session, category="Cluedo"))
-        admin.add_view(ModelView(models.Filetrack, db.session, category="Cluedo"))
+        admin.add_view(ModelView(models.Sample, db.session, category="Cluedo"))
 
         # Additional links
         admin.add_sub_category(name="Links", parent_name="Other")
