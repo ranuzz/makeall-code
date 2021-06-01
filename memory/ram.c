@@ -22,7 +22,7 @@
 // cat /proc/meminfo
 // head /dev/mem | hexdump -C
 
-
+//# define PATH_MAX 255   
 // from pmap.c
 void print_maps(pid_t pid)
 {
@@ -216,10 +216,11 @@ int main() {
     printf("Mem unit %d bytes\n", info.mem_unit);
 
     pid_t pid = getpid();
-    //print_name_pid(pid);
-    //print_maps(pid);
-    //read_ram(info.totalram, 1 << 12);
-    //printf("%p\n", __builtin_return_address(0));
+    printf("%d\n", pid);
+    print_name_pid(pid);
+    print_maps(pid);
+    read_ram(info.totalram, 1 << 12);
+    printf("%p\n", __builtin_return_address(0));
 
 
     print_backtrace();
