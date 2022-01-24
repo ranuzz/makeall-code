@@ -115,6 +115,6 @@ const solver = {
     },
     reset: () => {
         localStorage.removeItem('gameState');
-        localStorage.removeItem('statistics');
+        //localStorage.removeItem('statistics');
     }
 }
